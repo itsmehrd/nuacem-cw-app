@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CounterAppModule } from './counter-app/counter-app.module';
+import { WeatherAppModule } from './weather-app/weather-app.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CounterAppModule } from './counter-app/counter-app.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    CounterAppModule
+    CounterAppModule,
+    WeatherAppModule
   ],
   providers: [],
   bootstrap: [AppComponent]
