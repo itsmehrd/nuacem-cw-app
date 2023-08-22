@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "nuacem-cw-app"
+    }
+  },
+  "defaultProject": "nuacem-cw-app",
+  "cli": {
+    "analytics": false
+  }
 }
