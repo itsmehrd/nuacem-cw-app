@@ -1,11 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedRoutingModule } from './shared/shared-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { CounterAppModule } from './counter-app/counter-app.module';
-import { WeatherAppModule } from './weather-app/weather-app.module';
 
 @NgModule({
   declarations: [
@@ -13,10 +11,8 @@ import { WeatherAppModule } from './weather-app/weather-app.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    CounterAppModule,
-    WeatherAppModule
+    SharedRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
