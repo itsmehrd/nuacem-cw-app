@@ -36,7 +36,13 @@
       </small>
     </div>
     <ul class="list-group list-group-none">
-      <li class="list-group-item" *ngFor="let location of allLocationsSearched">
+      <li
+        class="list-group-item"
+        *ngFor="let location of allLocationsSearched"
+        [ngClass]="{
+          'bg-custom-light': location?.name === currentData?.name
+        }"
+      >
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center justify-content-start">
             <div

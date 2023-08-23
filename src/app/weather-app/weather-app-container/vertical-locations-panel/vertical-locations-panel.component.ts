@@ -13,9 +13,14 @@ export class VerticalLocationsPanelComponent implements OnInit {
   allLocationsSearched: Array<object> = [];
   getIconUrl = getIcon;
   countAccepted = 8;
+  currentData: any;
   constructor(private _weatherForecastService: WeatherAppService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._weatherForecastService.searchedLocationData.subscribe((data) => {
+      this.currentData = data;
+    });
+  }
 
   onKeypress(e: KeyboardEvent) {
     if (e.key === 'Enter') {
@@ -56,12 +61,16 @@ export class VerticalLocationsPanelComponent implements OnInit {
   remove(locationName) {
     if (locationName === 'all') {
       this.allLocationsSearched.length = 0;
+      this.searchInput = '';
     } else {
       this.allLocationsSearched = this.allLocationsSearched.filter(
         (el) => el['name'] !== locationName
       );
     }
-    if (this.allLocationsSearched.length === 0) {
+    if (
+      this.allLocationsSearched.length === 0 ||
+      this.currentData.name === locationName
+    ) {
       this._weatherForecastService.showDetailedView.next(false);
     }
   }
