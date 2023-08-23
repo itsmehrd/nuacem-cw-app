@@ -8,6 +8,7 @@
     "openssl-start": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve",
     "openssl-build": "set NODE_OPTIONS=--openssl-legacy-provider && ng build",
     "openssl-build-prod": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod",
+    "openssl-build-prod-base-href": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod --base-href /ng-app-deployment",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
