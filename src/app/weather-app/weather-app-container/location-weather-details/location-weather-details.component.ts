@@ -11,6 +11,7 @@ export class LocationWeatherDetailsComponent implements OnInit {
   renderData: any;
   fiveDayForecastData: any[];
   getIconUrl = getIcon;
+  showDetails: boolean;
   constructor(private _weatherForecastService: WeatherAppService) {}
 
   ngOnInit(): void {
@@ -18,6 +19,9 @@ export class LocationWeatherDetailsComponent implements OnInit {
       // console.log('Data to be rendered in right side', data);
       this.renderData = data;
       this.get5DayForecastData(data.coord);
+    });
+    this._weatherForecastService.showDetailedView.subscribe((showDetails) => {
+      this.showDetails = showDetails;
     });
   }
 

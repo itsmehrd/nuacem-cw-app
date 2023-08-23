@@ -11,6 +11,7 @@ export class WeatherAppService {
   APIKey = `d4594364698122bfd1c4b3eb5f2ff19f`;
 
   searchedLocationData: Subject<any> = new Subject<any>();
+  showDetailedView: Subject<boolean> = new Subject<boolean>();
 
   constructor(private _http: HttpClient) {}
 

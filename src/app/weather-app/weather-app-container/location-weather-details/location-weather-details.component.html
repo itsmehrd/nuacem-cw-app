@@ -1,4 +1,7 @@
-<div class="ms-5 border border-dark px-5 py-2" *ngIf="renderData">
+<div
+  class="ms-5 border border-dark px-5 py-2"
+  *ngIf="renderData && showDetails"
+>
   <div class="d-flex justify-content-start align-items-center">
     <img
       [src]="getIconUrl(renderData?.weather[0]?.description)"
@@ -8,7 +11,9 @@
     <div class="d-flex flex-column">
       <div class="h2">{{ renderData?.name }}</div>
       <div class="h3">{{ renderData?.main?.temp }}&deg;C</div>
-      <div class="h4">{{ renderData?.weather[0]?.description | titlecase }}</div>
+      <div class="h4">
+        {{ renderData?.weather[0]?.description | titlecase }}
+      </div>
       <div class="h5">
         Wind: {{ renderData?.wind?.speed }} m/s {{ renderData?.wind?.deg }} deg
       </div>
