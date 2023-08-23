@@ -1,14 +1,15 @@
-<div class="ms-5 border border-dark px-5 py-2">
+<div class="ms-5 border border-dark px-5 py-2" *ngIf="renderData">
   <div class="d-flex justify-content-start align-items-center">
     <img
       src="../../../../assets/weather-icons/animated/cloudy-day-1.svg"
       width="250"
     />
     <div class="d-flex flex-column">
-      <div class="h3">15&deg;C</div>
-      <div class="h4">Clear sky</div>
-      <div class="h5">Wind: 3 m/s 160 deg</div>
-      <div class="h5">Pressure 1024</div>
+      <div class="h2">{{ renderData?.name }}</div>
+      <div class="h3">{{ renderData?.main?.temp }}&deg;C</div>
+      <div class="h4">{{ renderData?.weather[0]?.description }}</div>
+      <div class="h5">Wind: {{ renderData?.wind.speed }} m/s {{ renderData?.wind.deg}} deg</div>
+      <div class="h5">Pressure {{ renderData?.main?.pressure }}</div>
     </div>
   </div>
 

@@ -8,7 +8,7 @@
           name=""
           id=""
           aria-describedby="helpId"
-          placeholder=""
+          placeholder="Search a city & Hit ENTER"
           [(ngModel)]="searchInput"
           (keypress)="onKeypress($event)"
         />
@@ -20,14 +20,24 @@
           <i class="fa-solid fa-plus"></i>
         </button>
       </div>
-      <!-- <small id="helpId" class="form-text text-danger"
-        >{{ searchInput }} is invalid location</small
-      > -->
+      <small
+        id="helpId"
+        class="form-text text-danger"
+        *ngIf="searchInput === 'City name not found'"
+        >Invalid location searched. Try with a valid location input</small
+      >
     </div>
     <ul class="list-group list-group-none">
       <li class="list-group-item" *ngFor="let location of allLocationsSearched">
         <div class="d-flex align-items-center justify-content-around">
-          <div>{{ location }}</div>
+          <div class="d-flex align-items-center justify-content-start">
+            <div class="me-3">{{ location.name }}</div>
+            <img
+              src="../../../../assets/weather-icons/animated/cloudy-day-1.svg"
+              width="35"
+            />
+            <div>{{ location.main.temp | number : "1.2-2" }}&deg;C</div>
+          </div>
           <div class="ms-auto">
             <button
               type="button"

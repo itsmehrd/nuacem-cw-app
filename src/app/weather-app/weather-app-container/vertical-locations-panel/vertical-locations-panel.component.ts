@@ -11,10 +11,12 @@ import { EMPTY } from 'rxjs';
 })
 export class VerticalLocationsPanelComponent implements OnInit {
   searchInput: string;
-  allLocationsSearched: Array<string | object> = [];
+  allLocationsSearched: Array<object> = [];
   constructor(private _weatherForecastService: WeatherAppService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   onKeypress(e: KeyboardEvent) {
     if (e.key === 'Enter') {
@@ -23,10 +25,20 @@ export class VerticalLocationsPanelComponent implements OnInit {
   }
 
   getWeatherDetails(searchInput) {
+    // this._weatherForecastService.getCityWeatherForecastData(searchInput).subscribe(console.warn)
     this._weatherForecastService.getCityWeatherData(searchInput).subscribe(
       (data) => {
-        console.log(searchInput);
-        this.allLocationsSearched?.push(searchInput);
+        console.log(searchInput, data);
+        this._weatherForecastService.searchedLocationData.next(data);
+        if (
+          !this.allLocationsSearched.find(
+            (location) => location['name'] === data['name']
+          )
+        ) {
+          this.allLocationsSearched?.unshift(data);
+        } else {
+          console.log(`duplicate location skipped`);
+        }
       },
       (err) => {
         console.log('Error', err);
