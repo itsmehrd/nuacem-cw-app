@@ -1,28 +1,35 @@
 <div class="ms-5 border border-dark px-5 py-2" *ngIf="renderData">
   <div class="d-flex justify-content-start align-items-center">
     <img
-      src="../../../../assets/weather-icons/animated/cloudy-day-1.svg"
+      [src]="getIconUrl(renderData?.weather[0]?.description)"
       width="250"
+      [alt]="renderData?.weather[0]?.description"
     />
     <div class="d-flex flex-column">
       <div class="h2">{{ renderData?.name }}</div>
       <div class="h3">{{ renderData?.main?.temp }}&deg;C</div>
-      <div class="h4">{{ renderData?.weather[0]?.description }}</div>
-      <div class="h5">Wind: {{ renderData?.wind.speed }} m/s {{ renderData?.wind.deg}} deg</div>
+      <div class="h4">{{ renderData?.weather[0]?.description | titlecase }}</div>
+      <div class="h5">
+        Wind: {{ renderData?.wind?.speed }} m/s {{ renderData?.wind?.deg }} deg
+      </div>
       <div class="h5">Pressure {{ renderData?.main?.pressure }}</div>
     </div>
   </div>
 
   <div class="d-flex justify-content-start align-items-center mb-5">
-    <ng-container *ngFor="let x of [1, 2, 3, 4, 5]">
+    <ng-container *ngFor="let forecastData of fiveDayForecastData">
       <div class="d-flex flex-column align-items-center mx-3">
-        <div class="h6">10</div>
-        <div class="h6">Tue</div>
+        <div class="h6">{{ get("date", forecastData?.dt) }}</div>
+        <div class="h6">{{ get("day", forecastData?.dt) }}</div>
         <img
-          src="../../../../assets/weather-icons/animated/cloudy-day-1.svg"
+          [src]="getIconUrl(forecastData?.weather[0]?.description)"
           width="50"
+          [alt]="forecastData?.weather[0]?.description"
         />
-        <div class="h6">15&deg;C</div>
+        <div class="h6">
+          {{ forecastData?.temp?.max | number : "1.0-0" }} /
+          {{ forecastData?.temp?.min | number : "1.0-0" }}&deg;C
+        </div>
       </div>
     </ng-container>
   </div>

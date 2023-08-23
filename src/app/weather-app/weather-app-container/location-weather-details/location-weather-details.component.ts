@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherAppService } from '../../weather-app.service';
+import { getIcon } from '../weather-app.constants';
 
 @Component({
   selector: 'selected-location-weather-details',
@@ -8,7 +9,8 @@ import { WeatherAppService } from '../../weather-app.service';
 })
 export class LocationWeatherDetailsComponent implements OnInit {
   renderData: any;
-  fiveDayForecastData: any;
+  fiveDayForecastData: any[];
+  getIconUrl = getIcon;
   constructor(private _weatherForecastService: WeatherAppService) {}
 
   ngOnInit(): void {
@@ -23,12 +25,28 @@ export class LocationWeatherDetailsComponent implements OnInit {
     this._weatherForecastService
       .getCityWeatherForecastData(location)
       .subscribe((data) => {
-        const dailyForecastData = data['daily'];
-        dailyForecastData?.map(
-          (dayWeatherDetails) =>
-            (dayWeatherDetails.dt = new Date(dayWeatherDetails.dt))
-        );
-        console.log(dailyForecastData);
+        this.fiveDayForecastData = (data['daily'] as Array<any>).slice(0, 5);
+        console.log(this.fiveDayForecastData);
+        // const dailyForecastData = data['daily'];
+        // dailyForecastData?.map(
+        //   (dayWeatherDetails) =>
+        //     (dayWeatherDetails.dt = new Date(
+        //       dayWeatherDetails.dt * 1000
+        //     ).getDate())
+        // );
+        // console.log(dailyForecastData);
       });
+  }
+
+  get(str: string, data: number) {
+    let requirement;
+    if (str.toLocaleLowerCase() === 'date') {
+      requirement = new Date(data * 1000).getDate();
+    } else if (str.toLocaleLowerCase() === 'day') {
+      const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      requirement = weekdays[new Date(data * 1000).getDay()];
+    }
+    console.log(requirement);
+    return requirement;
   }
 }

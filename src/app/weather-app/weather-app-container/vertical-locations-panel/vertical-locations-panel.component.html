@@ -31,12 +31,13 @@
       <li class="list-group-item" *ngFor="let location of allLocationsSearched">
         <div class="d-flex align-items-center justify-content-around">
           <div class="d-flex align-items-center justify-content-start">
-            <div class="me-3">{{ location.name }}</div>
+            <div class="me-3">{{ location?.name }}</div>
             <img
-              src="../../../../assets/weather-icons/animated/cloudy-day-1.svg"
+              [src]="getIconUrl(location?.weather[0]?.description)"
               width="35"
+              [alt]="location?.weather[0]?.description"
             />
-            <div>{{ location.main.temp | number : "1.2-2" }}&deg;C</div>
+            <div>{{ location?.main?.temp | number : "1.2-2" }}&deg;C</div>
           </div>
           <div class="ms-auto">
             <button

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { debounceTime, switchMap } from 'rxjs/operators';
-import { WeatherAppService } from '../../weather-app.service';
 import { EMPTY } from 'rxjs';
+import { WeatherAppService } from '../../weather-app.service';
+import { getIcon } from '../weather-app.constants';
 
 @Component({
   selector: 'leftside-vertical-locations-panel',
@@ -12,6 +11,7 @@ import { EMPTY } from 'rxjs';
 export class VerticalLocationsPanelComponent implements OnInit {
   searchInput: string;
   allLocationsSearched: Array<object> = [];
+  getIconUrl = getIcon
   constructor(private _weatherForecastService: WeatherAppService) {}
 
   ngOnInit(): void {
