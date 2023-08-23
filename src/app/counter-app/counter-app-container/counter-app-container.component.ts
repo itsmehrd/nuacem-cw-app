@@ -9,17 +9,19 @@ import { createUUID } from './counter-app.constants';
   styleUrls: ['./counter-app-container.component.css'],
 })
 export class CounterAppContainerComponent implements OnInit {
-  allCounters: Counter[] = [];
   generateUUID = createUUID;
-  constructor(private _counterAppService: CounterAppService) {}
+  constructor(
+    // private _counterAppService: CounterAppService,
+    public counterAppService: CounterAppService
+  ) {}
 
   ngOnInit(): void {
-    this._counterAppService.listOfAllCounters.subscribe(
-      (allCounters: Counter[]) => {
+    /* this._counterAppService
+      .getListOfAllCounters()
+      .subscribe((allCounters: Counter[]) => {
         this.allCounters = allCounters;
         console.log(this.allCounters);
-      }
-    );
+      }); */
   }
 
   addCounter() {
@@ -27,17 +29,20 @@ export class CounterAppContainerComponent implements OnInit {
       uuid: this.generateUUID(),
       count: 0,
     };
-    this.allCounters.unshift(counter);
-    this._counterAppService.listOfAllCounters = this.allCounters;
+    // this.allCounters?.unshift(counter);
+    // this._counterAppService.setListOfAllCounters(this.allCounters);
+    this.counterAppService.allCounters?.unshift(counter);
   }
 
   resetAllCounters() {
-    this.allCounters.map((counter) => (counter.count = 0));
-    this._counterAppService.listOfAllCounters = this.allCounters;
+    // this.allCounters?.map((counter) => (counter.count = 0));
+    // this._counterAppService.setListOfAllCounters(this.allCounters);
+    this.counterAppService.allCounters?.map((counter) => (counter.count = 0));
   }
 
   deleteAllCounters() {
-    this.allCounters = [];
-    this._counterAppService.listOfAllCounters = this.allCounters;
+    // this.allCounters = [];
+    // this._counterAppService.setListOfAllCounters(this.allCounters);
+    this.counterAppService.allCounters = [];
   }
 }

@@ -11,15 +11,18 @@ export class IndividualCounterComponent implements OnInit {
   allCounters: Counter[];
   @Input() counter: Counter;
 
-  constructor(private _counterAppService: CounterAppService) {}
+  constructor(
+    // private _counterAppService: CounterAppService,
+    public counterAppService: CounterAppService
+  ) {}
 
   ngOnInit(): void {
-    this._counterAppService.listOfAllCounters.subscribe(
-      (allCounters: Counter[]) => {
+    /* this._counterAppService
+      .getListOfAllCounters()
+      .subscribe((allCounters: Counter[]) => {
         this.allCounters = allCounters;
         console.log(this.allCounters);
-      }
-    );
+      }); */
   }
 
   increment() {
@@ -29,9 +32,10 @@ export class IndividualCounterComponent implements OnInit {
     this.counter.count -= 1;
   }
   delete(counterId) {
-    this.allCounters = this.allCounters?.filter(
-      (counter) => counter.uuid !== counterId
-    );
-    this._counterAppService.listOfAllCounters = this.allCounters;
+    this.counterAppService.allCounters =
+      this.counterAppService.allCounters?.filter(
+        (counter) => counter.uuid !== counterId
+      );
+    // this._counterAppService.setListOfAllCounters(this.allCounters);
   }
 }

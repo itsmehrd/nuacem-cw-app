@@ -23,14 +23,14 @@
     id=""
     class="btn btn-danger"
     (click)="deleteAllCounters()"
-    *ngIf="allCounters.length > 1"
+    *ngIf="counterAppService.allCounters?.length > 1"
   >
     <i class="fa-regular fa-trash-can"></i>&nbsp;Delete all counters
   </button>
 </div>
 <div>
   <individual-counter
-    *ngFor="let counter of allCounters"
+    *ngFor="let counter of counterAppService.allCounters"
     [counter]="counter"
   ></individual-counter>
 </div>
