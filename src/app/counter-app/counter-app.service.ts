@@ -7,10 +7,10 @@ import { Counter } from './counter.model';
 })
 export class CounterAppService {
   private _listOfAllCounters: Subject<Counter[]> = new Subject<Counter[]>();
-  public get listOfAllCounters(): Observable<Counter[]> {
+  public get listOfAllCounters(): any {
     return this._listOfAllCounters.asObservable();
   }
-  public set listOfAllCounters(value: Counter[]) {
+  public set listOfAllCounters(value: any) {
     this._listOfAllCounters.next(value);
   }
   constructor() {}

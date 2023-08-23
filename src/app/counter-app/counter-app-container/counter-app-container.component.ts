@@ -22,7 +22,7 @@ export class CounterAppContainerComponent implements OnInit {
 
   addCounter() {
     const counter: Counter = {
-      uuid: crypto.randomUUID(),
+      uuid: self.crypto.randomUUID(),
       count: 0,
     };
     this.allCounters.unshift(counter);
