@@ -1,27 +1,22 @@
 # NuacemCwApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.1.
+Visit [Nuacem application](itsmehrd.github.io/ng-app-deployment) to see the UI
+## Best viewed on 
+Medium, large & extra large screens. 
+Mobile view support omitted intentionally.
+
+## Setting up the local
+1. Clone the repo in cmd using: `git clone https://github.com/itsmehrd/nuacem-cw-app.git`
+2. Change the directory to `nuacem-cw-app` in cmd using: `cd nuacem-cw-app`
+3. Set `legacy-peer-dependency` support for Angular v10 using:`npm config set legacy-peer-deps true`
+4. Install node modules using: `npm install` (or `npm install --legacy-peer-deps` if you excluded the step 3 above)
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+5. Run `npm run openssl-start` for a dev server (to let the app run on your local machine, even if the node version on your local machine mismatches with that of angular v10 requirement). 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.1.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
+6. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+7. Run `npm run openssl-build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `npm run openssl-build-prod-base-href-deploy` command for a production build.
