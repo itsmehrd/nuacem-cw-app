@@ -10,25 +10,31 @@ import { EMPTY } from 'rxjs';
   styleUrls: ['./vertical-locations-panel.component.css'],
 })
 export class VerticalLocationsPanelComponent implements OnInit {
-  searchInput = new FormControl();
-  isInvalidInput = false;
+  searchInput: string;
+  allLocationsSearched: Array<string | object> = [];
   constructor(private _weatherForecastService: WeatherAppService) {}
 
-  ngOnInit(): void {
-    console.log(this.searchInput);
-    this.searchInput.valueChanges
-      .pipe(
-        debounceTime(500),
-        switchMap((inputValue: string) =>
-          this._weatherForecastService.getCityWeatherData(inputValue)
-        )
-      )
-      .subscribe(
-        (data) => {},
-        (err) => {
-          if (err.status === 404) {
-          }
+  ngOnInit(): void {}
+
+  onKeypress(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      this.getWeatherDetails(this.searchInput);
+    }
+  }
+
+  getWeatherDetails(searchInput) {
+    this._weatherForecastService.getCityWeatherData(searchInput).subscribe(
+      (data) => {
+        console.log(searchInput);
+        this.allLocationsSearched?.push(searchInput);
+      },
+      (err) => {
+        console.log('Error', err);
+        if (err.status === 404) {
+          this.searchInput = 'City name not found';
+          return EMPTY;
         }
-      );
+      }
+    );
   }
 }

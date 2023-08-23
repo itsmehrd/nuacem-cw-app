@@ -9,21 +9,44 @@
           id=""
           aria-describedby="helpId"
           placeholder=""
-          [formControl]="searchInput"
+          [(ngModel)]="searchInput"
+          (keypress)="onKeypress($event)"
         />
-        <button type="button" class="btn btn-primary">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="getWeatherDetails(searchInput)"
+        >
           <i class="fa-solid fa-plus"></i>
         </button>
       </div>
-      <small id="helpId" class="form-text text-danger" *ngIf="isInvalidInput"
-        >{{ searchInput.value }} is invalid location</small
-      >
+      <!-- <small id="helpId" class="form-text text-danger"
+        >{{ searchInput }} is invalid location</small
+      > -->
     </div>
-    <ul class="list-group list-group-numbered">
-      <li class="list-group-item" [class.active]="">Location 1</li>
+    <ul class="list-group list-group-none">
+      <li class="list-group-item" *ngFor="let location of allLocationsSearched">
+        <div class="d-flex align-items-center justify-content-around">
+          <div>{{ location }}</div>
+          <div class="ms-auto">
+            <button
+              type="button"
+              class="btn btn-block btn-outline-dark rounded-circle ms-1"
+            >
+              <i class="fa-solid fa-rotate"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-block btn-outline-dark rounded-circle ms-1"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
-  <div class="d-flex">
+  <div class="d-flex" *ngIf="allLocationsSearched?.length > 0">
     <button type="button" class="btn btn-danger ms-auto">Clear</button>
   </div>
 </div>

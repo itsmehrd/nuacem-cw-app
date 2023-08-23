@@ -4,7 +4,7 @@ import { WeatherAppContainerComponent } from './weather-app-container/weather-ap
 import { VerticalLocationsPanelComponent } from './weather-app-container/vertical-locations-panel/vertical-locations-panel.component';
 import { LocationWeatherDetailsComponent } from './weather-app-container/location-weather-details/location-weather-details.component';
 import { WeatherAppRoutingModule } from './weather-app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    FormsModule,
     WeatherAppRoutingModule,
   ],
   exports: [],
