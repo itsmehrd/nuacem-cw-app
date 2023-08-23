@@ -11,12 +11,11 @@ import { getIcon } from '../weather-app.constants';
 export class VerticalLocationsPanelComponent implements OnInit {
   searchInput: string;
   allLocationsSearched: Array<object> = [];
-  getIconUrl = getIcon
+  getIconUrl = getIcon;
+  countAccepted = 8
   constructor(private _weatherForecastService: WeatherAppService) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   onKeypress(e: KeyboardEvent) {
     if (e.key === 'Enter') {
@@ -28,16 +27,19 @@ export class VerticalLocationsPanelComponent implements OnInit {
     // this._weatherForecastService.getCityWeatherForecastData(searchInput).subscribe(console.warn)
     this._weatherForecastService.getCityWeatherData(searchInput).subscribe(
       (data) => {
-        console.log(searchInput, data);
         this._weatherForecastService.searchedLocationData.next(data);
         if (
           !this.allLocationsSearched.find(
             (location) => location['name'] === data['name']
           )
         ) {
+          if (this.allLocationsSearched.length >= this.countAccepted) {
+            console.log(`8th Element came in`);
+            this.allLocationsSearched?.pop();
+          }
           this.allLocationsSearched?.unshift(data);
         } else {
-          console.log(`duplicate location skipped`);
+          // console.log(`duplicate location skipped`);
         }
       },
       (err) => {
@@ -47,6 +49,12 @@ export class VerticalLocationsPanelComponent implements OnInit {
           return EMPTY;
         }
       }
+    );
+  }
+
+  remove(locationName) {
+    this.allLocationsSearched = this.allLocationsSearched.filter(
+      (el) => el['name'] !== locationName
     );
   }
 }

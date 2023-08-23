@@ -37,7 +37,12 @@
       <li class="list-group-item" *ngFor="let location of allLocationsSearched">
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center justify-content-start">
-            <div class="">{{ location?.name }}</div>
+            <div
+              class="cursor-pointer"
+              (click)="getWeatherDetails(location?.name)"
+            >
+              {{ location?.name }}
+            </div>
             <div class="d-flex align-items-center justify-content-end ms-4">
               <img
                 [src]="getIconUrl(location?.weather[0]?.description)"
@@ -51,12 +56,14 @@
             <button
               type="button"
               class="btn btn-block btn-outline-dark rounded-circle ms-1"
+              (click)="getWeatherDetails(location?.name)"
             >
               <i class="fa-solid fa-rotate"></i>
             </button>
             <button
               type="button"
               class="btn btn-block btn-outline-dark rounded-circle ms-1"
+              (click)="remove(location?.name)"
             >
               <i class="fa-solid fa-xmark"></i>
             </button>

@@ -15,7 +15,7 @@ export class LocationWeatherDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this._weatherForecastService.searchedLocationData.subscribe((data) => {
-      console.log('Data to be rendered in right side', data);
+      // console.log('Data to be rendered in right side', data);
       this.renderData = data;
       this.get5DayForecastData(data.coord);
     });
@@ -26,7 +26,6 @@ export class LocationWeatherDetailsComponent implements OnInit {
       .getCityWeatherForecastData(location)
       .subscribe((data) => {
         this.fiveDayForecastData = (data['daily'] as Array<any>).slice(0, 5);
-        console.log(this.fiveDayForecastData);
         // const dailyForecastData = data['daily'];
         // dailyForecastData?.map(
         //   (dayWeatherDetails) =>
@@ -46,7 +45,6 @@ export class LocationWeatherDetailsComponent implements OnInit {
       const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       requirement = weekdays[new Date(data * 1000).getDay()];
     }
-    console.log(requirement);
     return requirement;
   }
 }
