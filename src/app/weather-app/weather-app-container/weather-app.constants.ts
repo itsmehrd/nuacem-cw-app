@@ -14,7 +14,7 @@ export const icons = {
 };
 
 export function getIcon(description: string) {
-  let imgPath = `../../../../assets/weather-icons/animated/${
+  let imgPath = `assets/weather-icons/animated/${
     icons[description] ?? 'day'
   }.svg`;
   return imgPath.toString();
