@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Counter } from '../counter.model';
 import { CounterAppService } from '../counter-app.service';
+import { createUUID } from './counter-app.constants';
 
 @Component({
   selector: 'counter-app-container',
@@ -9,6 +10,7 @@ import { CounterAppService } from '../counter-app.service';
 })
 export class CounterAppContainerComponent implements OnInit {
   allCounters: Counter[] = [];
+  generateUUID = createUUID;
   constructor(private _counterAppService: CounterAppService) {}
 
   ngOnInit(): void {
@@ -22,7 +24,7 @@ export class CounterAppContainerComponent implements OnInit {
 
   addCounter() {
     const counter: Counter = {
-      uuid: self.crypto.randomUUID(),
+      uuid: this.generateUUID(),
       count: 0,
     };
     this.allCounters.unshift(counter);
