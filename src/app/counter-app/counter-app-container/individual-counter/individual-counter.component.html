@@ -1,17 +1,39 @@
-<div class="row py-2 border border-dark align-items-center bg-light mb-2">
+<div class="row py-2 border border-dark align-items-center bg-light mx-0 my-2">
   <!-- <div class="col-md-4"><div class="h2">Counter-1</div></div> -->
-  <div class="col-md-7"><div class="h2">4</div></div>
-  <div class="col-md-5">
+  <div class="col-md-4 col-lg-7">
+    <div class="h2">
+      Count:&nbsp;<code>{{ counter.count }}</code>
+    </div>
+  </div>
+  <div class="col-md-8 col-lg-5">
     <div class="d-flex justify-content-end">
-      <button type="button" name="" id="" class="btn btn-dark ms-1">
+      <button
+        type="button"
+        name=""
+        id=""
+        class="btn btn-dark ms-1"
+        (click)="increment()"
+      >
         <i class="fa-solid fa-arrow-up"></i>&nbsp;Increment
       </button>
 
-      <button type="button" name="" id="" class="btn btn-dark ms-1">
+      <button
+        type="button"
+        name=""
+        id=""
+        class="btn btn-dark ms-1"
+        (click)="decrement()"
+      >
         <i class="fa-solid fa-arrow-down"></i>&nbsp;Decrement
       </button>
 
-      <button type="button" name="" id="" class="btn btn-danger ms-1">
+      <button
+        type="button"
+        name=""
+        id=""
+        class="btn btn-danger ms-1"
+        (click)="delete(counter.uuid)"
+      >
         <i class="fa-regular fa-trash-can"></i>&nbsp;Delete Counter
       </button>
     </div>

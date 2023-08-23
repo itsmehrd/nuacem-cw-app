@@ -1,15 +1,36 @@
-<div class="d-flex gap-2 justify-content-center mb-3">
-  <button type="button" name="" id="" class="btn btn-primary me-md-2">
+<div class="d-flex justify-content-start mb-3">
+  <button
+    type="button"
+    name=""
+    id=""
+    class="btn btn-primary me-md-2"
+    (click)="addCounter()"
+  >
     <i class="fa-solid fa-plus"></i>&nbsp;New counter
   </button>
-  <button type="button" name="" id="" class="btn btn-warning">
-    <i class="fa-regular fa-circle-xmark"></i>&nbsp;Reset all counters
+  <button
+    type="button"
+    name=""
+    id=""
+    class="btn btn-warning me-md-2"
+    (click)="resetAllCounters()"
+  >
+    <i class="fa-solid fa-ban"></i>&nbsp;Reset all counters
+  </button>
+  <button
+    type="button"
+    name=""
+    id=""
+    class="btn btn-danger"
+    (click)="deleteAllCounters()"
+    *ngIf="allCounters.length > 1"
+  >
+    <i class="fa-regular fa-trash-can"></i>&nbsp;Delete all counters
   </button>
 </div>
 <div>
-  <individual-counter></individual-counter>
-  <individual-counter></individual-counter>
-  <individual-counter></individual-counter>
-  <individual-counter></individual-counter>
-  <individual-counter></individual-counter>
+  <individual-counter
+    *ngFor="let counter of allCounters"
+    [counter]="counter"
+  ></individual-counter>
 </div>
