@@ -27,17 +27,25 @@
         >Invalid location searched. Try with a valid location input</small
       >
     </div>
+    <hr *ngIf="allLocationsSearched?.length > 0" />
+    <div *ngIf="allLocationsSearched?.length > 0" class="mb-3">
+      <small id="recentSearched" class="form-text text-dark"
+        >Recent searches
+      </small>
+    </div>
     <ul class="list-group list-group-none">
       <li class="list-group-item" *ngFor="let location of allLocationsSearched">
-        <div class="d-flex align-items-center justify-content-around">
+        <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center justify-content-start">
-            <div class="me-3">{{ location?.name }}</div>
-            <img
-              [src]="getIconUrl(location?.weather[0]?.description)"
-              width="35"
-              [alt]="location?.weather[0]?.description"
-            />
-            <div>{{ location?.main?.temp | number : "1.2-2" }}&deg;C</div>
+            <div class="">{{ location?.name }}</div>
+            <div class="d-flex align-items-center justify-content-end ms-4">
+              <img
+                [src]="getIconUrl(location?.weather[0]?.description)"
+                width="35"
+                [alt]="location?.weather[0]?.description"
+              />
+              <div>{{ location?.main?.temp | number : "1.2-2" }}&deg;C</div>
+            </div>
           </div>
           <div class="ms-auto">
             <button
